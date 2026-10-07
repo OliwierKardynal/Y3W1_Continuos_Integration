@@ -11,16 +11,24 @@ import java.util.List;
 public class ProductController {
 private final ProductService productService;
 
+
 public ProductController(ProductService productService) {
     this.productService = productService;
 }
+
 @GetMapping
 public List<Product> getAll() {
     return productService.getAll();
     }
+    @GetMapping("/{id}")
+    public Product getById(@PathVariable Long id) {
+        return productService.getByID(id);
+    }
+
 
     @PostMapping
 public Product create(@RequestBody Product product) {
     return productService.create(product);
 }
+
 }
